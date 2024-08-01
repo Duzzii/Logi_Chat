@@ -1,62 +1,33 @@
 package com.chatiggo.chatigo.websocket;
-
-import com.chatiggo.chatigo.entity.Chat;
-import com.chatiggo.chatigo.service.ChatService;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.web.socket.CloseStatus;
-import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
+import org.springframework.web.socket.TextMessage;
+import org.springframework.web.socket.CloseStatus;
 
-import java.io.IOException;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.Collections;
-import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
-@Component
 public class ChatWebSocketHandler extends TextWebSocketHandler {
 
-    private static final Set<WebSocketSession> sessions = Collections.synchronizedSet(new HashSet<>());
-
-    @Autowired
-    private ChatService chatService;
+    private static Set<WebSocketSession> sessions = Collections.newSetFromMap(new ConcurrentHashMap<>());
 
     @Override
-    public void afterConnectionEstablished(WebSocketSession session) {
+    public void afterConnectionEstablished(WebSocketSession session) throws Exception {
         sessions.add(session);
-        System.out.println("New WebSocket connection established.");
     }
 
     @Override
-    protected void handleTextMessage(WebSocketSession session, TextMessage message) throws IOException {
-        String payload = message.getPayload();
-
-        // Create a new Chat entity and save it
-        Chat chat = new Chat();
-        chat.setSender("User"); // Customize as needed
-        chat.setContent(payload);
-        chat.setTimestamp(convertToDateViaInstant(LocalDateTime.now()));
-        chatService.save(chat);
-
-        // Broadcast the message to all connected clients
-        for (WebSocketSession s : sessions) {
-            if (s.isOpen()) {
-                s.sendMessage(new TextMessage(payload));
+    protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
+        for (WebSocketSession webSocketSession : sessions) {
+            if (webSocketSession.isOpen()) {
+                webSocketSession.sendMessage(message);
             }
         }
     }
 
     @Override
-    public void afterConnectionClosed(WebSocketSession session, CloseStatus closeStatus) {
+    public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
         sessions.remove(session);
-        System.out.println("WebSocket connection closed.");
-    }
-
-    private Date convertToDateViaInstant(LocalDateTime dateToConvert) {
-        return Date.from(dateToConvert.atZone(ZoneId.systemDefault()).toInstant());
     }
 }

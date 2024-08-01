@@ -2,24 +2,27 @@ package com.chatiggo.chatigo.controller;
 
 import com.chatiggo.chatigo.entity.Chat;
 import com.chatiggo.chatigo.service.ChatService;
-import com.chatiggo.chatigo.service.ChatServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-// ChatController.java
 @RestController
 @RequestMapping("/chats")
 public class ChatController {
     @Autowired
     private ChatService chatService;
 
+    @Autowired
+    private SimpMessagingTemplate messagingTemplate;
+
     @PostMapping
     public ResponseEntity<Chat> createChat(@RequestBody Chat chat) {
         Chat savedChat = chatService.save(chat);
+        messagingTemplate.convertAndSend("/topic/messages", savedChat);
         return new ResponseEntity<>(savedChat, HttpStatus.CREATED);
     }
 
@@ -41,4 +44,3 @@ public class ChatController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
-

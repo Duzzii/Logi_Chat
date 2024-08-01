@@ -21,49 +21,31 @@ export class ChatComponent implements OnInit {
   ngOnInit(): void {
     this.groupService.currentGroupName.subscribe(name => this.groupName = name);
     this.groupService.currentGroupCode.subscribe(code => {
-      console.log('Group Code:', code); // Add this line
+      console.log('Group Code:', code);
       this.groupCode = code;
       this.loadMessages();
     });
-  }
 
-  loadMessages() {
-    this.chatService.getMessagesByGroupId(this.groupCode).subscribe(chats => {
+    this.chatService.messages$.subscribe(chats => {
       this.messages = chats;
     });
   }
 
+  loadMessages() {
+    this.chatService.getMessagesByGroupId(this.groupCode).subscribe();
+  }
+
   sendMessage() {
     if (this.messageContent.trim()) {
-      if (this.editMode && this.editMessageId != null) {
-        const updatedMessage: Chat = {
-          id: this.editMessageId,
-          sender: this.groupName,
-          content: this.messageContent,
-          groupCode: this.groupCode,
-          timestamp: new Date()
-        };
-        this.chatService.updateChat(this.editMessageId, updatedMessage).subscribe(chat => {
-          const index = this.messages.findIndex(msg => msg.id === this.editMessageId);
-          if (index !== -1) {
-            this.messages[index] = chat;
-          }
-          this.messageContent = '';
-          this.editMode = false;
-          this.editMessageId = undefined;
-        });
-      } else {
-        const newMessage: Chat = {
-          sender: this.groupName,
-          content: this.messageContent,
-          groupCode: this.groupCode,
-          timestamp: new Date()
-        };
-        this.chatService.createChat(newMessage).subscribe(chat => {
-          this.messages.push(chat);
-          this.messageContent = '';
-        });
-      }
+      const newMessage: Chat = {
+        sender: this.groupName,
+        content: this.messageContent,
+        groupCode: this.groupCode,
+        timestamp: new Date()
+      };
+      this.chatService.createChat(newMessage).subscribe(chat => {
+        this.messageContent = '';
+      });
     }
   }
 
@@ -74,8 +56,6 @@ export class ChatComponent implements OnInit {
   }
 
   deleteMessage(id: number) {
-    this.chatService.deleteChat(id).subscribe(() => {
-      this.messages = this.messages.filter(msg => msg.id !== id);
-    });
+    this.chatService.deleteChat(id).subscribe();
   }
 }
