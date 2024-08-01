@@ -11,7 +11,9 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -37,7 +39,7 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
         Chat chat = new Chat();
         chat.setSender("User"); // Customize as needed
         chat.setContent(payload);
-        chat.setTimestamp(LocalDateTime.now());
+        chat.setTimestamp(convertToDateViaInstant(LocalDateTime.now()));
         chatService.save(chat);
 
         // Broadcast the message to all connected clients
@@ -52,5 +54,9 @@ public class ChatWebSocketHandler extends TextWebSocketHandler {
     public void afterConnectionClosed(WebSocketSession session, CloseStatus closeStatus) {
         sessions.remove(session);
         System.out.println("WebSocket connection closed.");
+    }
+
+    private Date convertToDateViaInstant(LocalDateTime dateToConvert) {
+        return Date.from(dateToConvert.atZone(ZoneId.systemDefault()).toInstant());
     }
 }

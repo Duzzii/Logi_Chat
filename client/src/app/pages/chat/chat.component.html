@@ -1,0 +1,28 @@
+<!-- chat.component.html -->
+<div class="container">
+    <div class="row justify-content-center mt-5">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header">
+            Chat Room - {{ groupName }} (Code: {{ groupCode }})
+          </div>
+          <div class="card-body chat-window" id="chatWindow">
+            <div class="message" *ngFor="let message of messages">
+              <strong>{{ message.sender }}:</strong> {{ message.content }}
+            </div>
+          </div>
+          <div class="card-footer">
+            <form (ngSubmit)="sendMessage()">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Type a message" [(ngModel)]="messageContent" name="messageContent" required>
+                <div class="input-group-append">
+                  <button class="btn btn-primary" type="submit">Send</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
