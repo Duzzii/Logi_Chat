@@ -1,0 +1,57 @@
+/* group-create.component.css */
+.container {
+    max-width: 100%;
+    padding: 0 15px;
+  }
+  
+  .card {
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .card-header {
+    background-color: #007bff;
+    color: white;
+    padding: 15px;
+    text-align: center;
+  }
+  
+  .card-body {
+    padding: 20px;
+  }
+  
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .form-label {
+    font-weight: 600;
+  }
+  
+  .form-control {
+    border-radius: 5px;
+    padding: 10px;
+  }
+  
+  .btn {
+    background-color: #007bff;
+    border: none;
+    padding: 10px;
+    font-size: 1em;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .btn:focus {
+    box-shadow: none;
+  }
+  
+  .btn:active {
+    background-color: #003f7f;
+  }
+  
