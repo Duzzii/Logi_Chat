@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
 import { Chat } from './chat';
 import { environment } from 'src/environment/environment';
 
@@ -29,9 +28,8 @@ export class ChatService {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
 
-  // Method to get messages by groupId
-  getMessagesByGroupId(groupId: string): Observable<any> {
+  getMessagesByGroupId(groupId: string): Observable<Chat[]> {
     const url = `${this.baseUrl}/group/${groupId}`;
-    return this.http.get<any>(url);
+    return this.http.get<Chat[]>(url);
   }
 }

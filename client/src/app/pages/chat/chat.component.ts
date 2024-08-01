@@ -21,6 +21,7 @@ export class ChatComponent implements OnInit {
   ngOnInit(): void {
     this.groupService.currentGroupName.subscribe(name => this.groupName = name);
     this.groupService.currentGroupCode.subscribe(code => {
+      console.log('Group Code:', code); // Add this line
       this.groupCode = code;
       this.loadMessages();
     });
@@ -39,6 +40,7 @@ export class ChatComponent implements OnInit {
           id: this.editMessageId,
           sender: this.groupName,
           content: this.messageContent,
+          groupCode: this.groupCode,
           timestamp: new Date()
         };
         this.chatService.updateChat(this.editMessageId, updatedMessage).subscribe(chat => {
@@ -54,6 +56,7 @@ export class ChatComponent implements OnInit {
         const newMessage: Chat = {
           sender: this.groupName,
           content: this.messageContent,
+          groupCode: this.groupCode,
           timestamp: new Date()
         };
         this.chatService.createChat(newMessage).subscribe(chat => {
