@@ -5,19 +5,27 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class GroupService {
-  private groupNameSource = new BehaviorSubject<string>('');
-  private groupCodeSource = new BehaviorSubject<string>('');
+  private groupNameSubject = new BehaviorSubject<string>(this.getStoredGroupName());
+  private groupCodeSubject = new BehaviorSubject<string>(this.getStoredGroupCode());
 
-  currentGroupName = this.groupNameSource.asObservable();
-  currentGroupCode = this.groupCodeSource.asObservable();
-
-  constructor() { }
+  currentGroupName = this.groupNameSubject.asObservable();
+  currentGroupCode = this.groupCodeSubject.asObservable();
 
   setGroupName(name: string) {
-    this.groupNameSource.next(name);
+    this.groupNameSubject.next(name);
+    localStorage.setItem('groupName', name);
   }
 
   setGroupCode(code: string) {
-    this.groupCodeSource.next(code);
+    this.groupCodeSubject.next(code);
+    localStorage.setItem('groupCode', code);
+  }
+
+  private getStoredGroupName(): string {
+    return localStorage.getItem('groupName') || '';
+  }
+
+  private getStoredGroupCode(): string {
+    return localStorage.getItem('groupCode') || '';
   }
 }
