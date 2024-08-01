@@ -21,7 +21,23 @@ import java.util.List;
         }
 
         @Override
+        public List<Chat> findByGroupCode(String groupcode){
+            return chatRepository.findByGroupCode(groupcode);
+        }
+
+        @Override
         public List<Chat> findAll() {
             return chatRepository.findAll();
+        }
+
+        @Override
+        public Chat update(Long id, Chat chat){
+            chat.setId(id);
+            return chatRepository.save(chat);
+        }
+
+        @Override
+        public void delete(Long id){
+            chatRepository.deleteById(id);
         }
     }

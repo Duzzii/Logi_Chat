@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+// ChatController.java
 @RestController
 @RequestMapping("/chats")
 public class ChatController {
-
     @Autowired
-    private ChatServiceImpl chatService;
+    private ChatService chatService;
 
     @PostMapping
     public ResponseEntity<Chat> createChat(@RequestBody Chat chat) {
@@ -23,11 +23,22 @@ public class ChatController {
         return new ResponseEntity<>(savedChat, HttpStatus.CREATED);
     }
 
-    @GetMapping
-    public ResponseEntity<List<Chat>> getAllChats() {
-        List<Chat> chats = chatService.findAll();
+    @GetMapping("/group/{groupCode}")
+    public ResponseEntity<List<Chat>> getChatsByGroupCode(@PathVariable String groupCode) {
+        List<Chat> chats = chatService.findByGroupCode(groupCode);
         return new ResponseEntity<>(chats, HttpStatus.OK);
     }
 
-    // Optional: Add methods for handling specific chat operations like fetching by ID, deleting, etc.
+    @PutMapping("/{id}")
+    public ResponseEntity<Chat> updateChat(@PathVariable Long id, @RequestBody Chat chat) {
+        Chat updatedChat = chatService.update(id, chat);
+        return new ResponseEntity<>(updatedChat, HttpStatus.OK);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteChat(@PathVariable Long id) {
+        chatService.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    }
 }
+
