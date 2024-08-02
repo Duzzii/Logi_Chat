@@ -15,15 +15,17 @@
 
 .chat-header {
   background-color: #0088cc;
-  color: white;
-  font-weight: bold;
-  font-size: 1.2em;
-  padding: 10px 15px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
+    color: white;
+    font-weight: bold;
+    font-size: 1.0em;
+    padding: 16px 11px;
+    margin-left: 0px;
+    margin-right: -12px;
+    border-top-left-radius: 1px;
+    border-top-right-radius: 1px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
 }
 
 .chat-window {
@@ -31,6 +33,7 @@
   overflow-y: auto;
   padding: 15px;
   background-color: #f5f8fa;
+  margin-left: 11px;
 }
 
 .message {
@@ -99,4 +102,17 @@
 
 .send-button:hover {
   background-color: #0077b3;
+}
+.container-fluid{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.btng {
+  background-color: #0088cc;
+    color: white;
+    border: none;
+}
+.fa-icon{
+  background-color: #0088cc;
 }

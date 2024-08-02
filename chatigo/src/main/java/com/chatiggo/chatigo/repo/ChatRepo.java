@@ -10,4 +10,6 @@ import java.util.List;
 public interface ChatRepo extends JpaRepository<Chat, Long> {
     List<Chat> findByGroupCode(String groupCode);
     // Custom query methods if needed
+    // Method to delete all chats by groupCode
+    void deleteByGroupCode(String groupCode);
 }

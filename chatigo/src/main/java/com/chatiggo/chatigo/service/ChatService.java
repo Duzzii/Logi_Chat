@@ -11,4 +11,5 @@ public interface ChatService {
     List<Chat> findAll();
     void delete(Long id);
     Chat update(Long id, Chat chat);
+    void clearAllByGroupCode(String groupcode);
 }
