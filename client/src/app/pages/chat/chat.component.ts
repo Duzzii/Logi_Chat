@@ -89,8 +89,9 @@ export class ChatComponent implements OnInit, AfterViewChecked {
         });
       } else {
         this.chatService.createChat(newMessage).subscribe(chat => {
-          this.messages.push(chat);
+          // this.messages.push(chat);
           this.messageContent = '';
+          this.scrollToBottom();
         });
       }
     }
@@ -112,7 +113,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     // Clear the group information from local storage and navigate to another page
     localStorage.removeItem('groupName');
     localStorage.removeItem('groupCode');
-    this.router.navigate(['/']); // Navigate to home or another appropriate page
+    this.router.navigate(['/home']); // Navigate to home or another appropriate page
   }
 
   scrollToBottom(): void {

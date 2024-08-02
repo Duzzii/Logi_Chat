@@ -11,6 +11,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { GroupCreateComponent } from './components/group-create/group-create.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatDialogModule } from '@angular/material/dialog';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ValidationModalComponent } from './components/validation-modal.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +24,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     RegisterComponent,
     SigninComponent,
     ChatComponent,
-    GroupCreateComponent
+    GroupCreateComponent,
+    ValidationModalComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +34,11 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ReactiveFormsModule,
     HttpClientModule,
     FontAwesomeModule,
+    
+    MatInputModule,
+    MatButtonModule,
+    MatDialogModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
