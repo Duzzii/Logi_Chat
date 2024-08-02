@@ -3,7 +3,7 @@ import { Chat } from 'src/app/services/chat/chat';
 import { ChatService } from 'src/app/services/chat/chat.service';
 import { GroupService } from 'src/app/services/group/group.service';
 import { Router } from '@angular/router';
-import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faTrashAlt, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-chat',
@@ -20,6 +20,8 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
   faEdit = faEdit;
   faTrashAlt = faTrashAlt;
+  faArrowLeft = faArrowLeft;
+  
 
   constructor(
     private chatService: ChatService,
@@ -69,6 +71,10 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     }
   }
 
+  goBack() {
+    this.router.navigate(['/home']); // Navigate back to the previous route or adjust as needed
+  }
+
   sendMessage() {
     if (this.messageContent.trim()) {
       const newMessage: Chat = {
@@ -109,12 +115,30 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     });
   }
 
+  // leaveChat() {
+  //   // Clear the group information from local storage and navigate to another page
+  //   localStorage.removeItem('groupName');
+  //   localStorage.removeItem('groupCode');
+  //   this.router.navigate(['/home']); // Navigate to home or another appropriate page
+  // }
   leaveChat() {
-    // Clear the group information from local storage and navigate to another page
-    localStorage.removeItem('groupName');
-    localStorage.removeItem('groupCode');
-    this.router.navigate(['/home']); // Navigate to home or another appropriate page
+    if (this.groupCode) {
+      // Delete all chat messages for the group
+      this.chatService.deleteChatsByGroupId(this.groupCode).subscribe(() => {
+        // Clear the group information from local storage
+        localStorage.removeItem('groupName');
+        localStorage.removeItem('groupCode');
+        // Navigate to home or another appropriate page
+        this.router.navigate(['/home']);
+      });
+    } else {
+      // If there's no groupCode, just clear local storage and navigate
+      localStorage.removeItem('groupName');
+      localStorage.removeItem('groupCode');
+      this.router.navigate(['/home']);
+    }
   }
+  
 
   scrollToBottom(): void {
     const chatWindow = document.getElementById('chatWindow');

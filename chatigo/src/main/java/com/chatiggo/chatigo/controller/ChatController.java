@@ -43,4 +43,10 @@ public class ChatController {
         chatService.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @DeleteMapping("/group/{groupCode}")
+    public ResponseEntity<Void> clearChatsByGroupCode(@PathVariable String groupCode) {
+        chatService.clearAllByGroupCode(groupCode);
+        return ResponseEntity.noContent().build();
+    }
 }
