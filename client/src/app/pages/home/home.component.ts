@@ -4,6 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GroupService } from 'src/app/services/group/group.service';
 
+import { faSignInAlt, faUserPlus, faComments, faUsers } from '@fortawesome/free-solid-svg-icons';
+
 import * as $ from 'jquery';  // Import jQuery
 
 @Component({
@@ -13,6 +15,10 @@ import * as $ from 'jquery';  // Import jQuery
 })
 export class HomeComponent implements OnInit {
   groupForm!: FormGroup;
+  faSignInAlt = faSignInAlt;
+  faUserPlus = faUserPlus;
+  faComments = faComments;
+  faUsers = faUsers;
 
   constructor(private fb: FormBuilder, private groupService: GroupService, private router: Router) {
     this.groupForm = this.fb.group({
