@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { GroupService } from 'src/app/services/group/group.service';
 import { ValidationModalComponent } from '../validation-modal.component';
+import { faSignInAlt, faUserPlus, faComments, faUsers, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-group-create',
@@ -12,7 +13,13 @@ import { ValidationModalComponent } from '../validation-modal.component';
   styleUrls: ['./group-create.component.scss']
 })
 export class GroupCreateComponent implements OnInit {
+
   groupForm!: FormGroup;
+  faSignInAlt = faSignInAlt;
+  faUserPlus = faUserPlus;
+  faComments = faComments;
+  faUsers = faUsers;
+  faSignOutAlt = faSignOutAlt;
   
   
   constructor(private fb: FormBuilder, private groupService: GroupService, private router: Router, private dialog: MatDialog) {
@@ -22,7 +29,13 @@ export class GroupCreateComponent implements OnInit {
     });
   }
 
+  
+
   ngOnInit(): void {}
+
+    logout() {
+
+    }
 
   onSubmit(): void {
     if (this.groupForm.valid) {
