@@ -1,5 +1,5 @@
 .container {
-  background-color: #3c80c4;
+  background: linear-gradient(135deg, #3c80c4, #1e2a78);
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -7,6 +7,7 @@
   text-align: center;
   color: white;
   padding: 20px;
+  flex-direction: column;
 }
 
 h1 {
@@ -26,6 +27,7 @@ h1 {
 .btn {
   margin: 10px;
   transition: transform 0.3s ease, background-color 0.3s ease;
+  color: white;
 }
 
 .btn:hover {
@@ -54,4 +56,25 @@ h1 {
 
 .modal-body {
   background-color: #ffffff;
+}
+
+.message-container {
+  background: linear-gradient(135deg, #1e2a78, #3c80c4);
+  padding: 20px;
+  border-radius: 8px;
+  color: white;
+  margin: 10px 0;
+}
+
+.message {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.message .username {
+  font-weight: bold;
+}
+
+.message .text {
+  margin: 5px 0;
 }
