@@ -2,12 +2,15 @@
 .container {
     max-width: 100%;
     padding: 0 15px;
+    background-color: #0056b3;
+    height: 91vh
   }
   
   .card {
     border: none;
     border-radius: 10px;
     overflow: hidden;
+    margin-top: 70px;
   }
   
   .card-header {
