@@ -1,11 +1,11 @@
 /* General container styling */
 .container {
-  margin-top: 50px;
-  display: flex;
+  top: 0;
+  background-image: url('/../assets/background.png');
+  display:flex;
   justify-content: center;
   align-items: center;
-  min-height: 84vh;
-  background-color: #f8f9fa;
+  min-height: 100vh;
 }
 
 /* Card styling */
@@ -14,7 +14,8 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  background-color: #ffffff;
+  background-color: #141313d3;
+  color: #ced4da;
 }
 
 /* Heading styling */
@@ -61,7 +62,7 @@ h2 {
 
 /* Link styling */
 .link-primary {
-  color: #007bff;
+  color: #ffffff;
   text-decoration: none;
 }
 
@@ -79,6 +80,6 @@ h2 {
 
 .alert-danger {
   background-color: #f8d7da;
-  color: #721c24;
+  color: #ffffff;
   border-color: #f5c6cb;
 }
