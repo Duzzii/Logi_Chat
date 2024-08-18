@@ -54,4 +54,15 @@
   .btn:active {
     background-color: #003f7f;
   }
-  
+  /* home.component.scss */
+.icon-container {
+  display: flex;
+  gap: 10px;
+}
+
+.logout-icon {
+  cursor: pointer;
+  color: rgb(0, 0, 0); // Change color as needed
+  font-size: 24px;
+  margin-left: 380px
+}

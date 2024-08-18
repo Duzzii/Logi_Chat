@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GroupService } from 'src/app/services/group/group.service';
 
-import { faSignInAlt, faUserPlus, faComments, faUsers } from '@fortawesome/free-solid-svg-icons';
+import { faSignInAlt, faUserPlus, faComments, faUsers, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 import * as $ from 'jquery';  // Import jQuery
 
@@ -18,6 +18,7 @@ export class HomeComponent implements OnInit {
   faSignInAlt = faSignInAlt;
   faUserPlus = faUserPlus;
   faComments = faComments;
+  faSignOutAlt = faSignOutAlt;  // Add the logout icon here
   faUsers = faUsers;
 
   constructor(private fb: FormBuilder, private groupService: GroupService, private router: Router) {
