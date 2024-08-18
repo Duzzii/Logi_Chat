@@ -11,8 +11,8 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'sign-in',component: SigninComponent },
   { path: 'register', component: RegisterComponent},
-  { path: 'create-group', component: GroupCreateComponent, canActivate: [AuthGuard] },
-  { path: 'chat', component: ChatComponent, canActivate: [AuthGuard] },
+  { path: 'create-group', component: GroupCreateComponent, },
+  { path: 'chat', component: ChatComponent,},
   // { path: '**', component: PageNotFoundComponent },  // Wildcard route for a 404 page
 ];
 
