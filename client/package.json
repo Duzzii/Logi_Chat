@@ -11,19 +11,20 @@
   "private": true,
   "dependencies": {
     "@angular/animations": "^16.2.0",
+    "@angular/cdk": "^16.2.0",
     "@angular/common": "^16.2.0",
     "@angular/compiler": "^16.2.0",
     "@angular/core": "^16.2.0",
     "@angular/forms": "^16.2.0",
     "@angular/material": "^16.2.0",
-    "@angular/cdk": "^16.2.0",
     "@angular/platform-browser": "^16.2.0",
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
-    "@fortawesome/angular-fontawesome": "^0.15.0", 
+    "@fortawesome/angular-fontawesome": "^0.13.0",
     "@fortawesome/fontawesome-svg-core": "^6.6.0",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@stomp/stompjs": "^7.0.0",
+    "ajv": "^8.8.2",
     "bootstrap": "^5.3.3",
     "global": "^4.4.0",
     "jquery": "^3.7.1",
@@ -31,8 +32,7 @@
     "rxjs": "~7.8.0",
     "sockjs-client": "^1.6.1",
     "tslib": "^2.3.0",
-    "zone.js": "~0.13.0",
-    "ajv": "^8.8.2"
+    "zone.js": "~0.13.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^16.2.14",
