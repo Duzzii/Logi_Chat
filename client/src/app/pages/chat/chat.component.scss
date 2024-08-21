@@ -2,6 +2,7 @@
 .container-fluid {
   max-width: 100%;
   padding: 0;
+  
 }
 
 .chat-card {
@@ -11,6 +12,7 @@
   display: flex;
   flex-direction: column;
   height: 100%;
+  
 }
 
 .chat-header {
@@ -32,7 +34,8 @@
   flex-grow: 1;
   overflow-y: auto;
   padding: 15px;
-  background-color: #f5f8fa;
+  // background-color: #ff2200;
+  background-image: url('/../assets/chatback.png');
   margin-left: 11px;
 }
 

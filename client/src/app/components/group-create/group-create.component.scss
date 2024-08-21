@@ -2,19 +2,20 @@
 .container {
     max-width: 100%;
     padding: 0 15px;
-    background-color: #0056b3;
-    height: 91vh
+    // background-color: #0056b3;
+    background: radial-gradient(circle, #888684, #00789f, #4383c2);
+    height: 100vh
   }
   
   .card {
     border: none;
     border-radius: 10px;
     overflow: hidden;
-    margin-top: 70px;
+    top: 46px;
   }
   
   .card-header {
-    background-color: #007bff;
+    background-color: #e7b159;
     color: white;
     padding: 15px;
     text-align: center;
@@ -38,7 +39,7 @@
   }
   
   .btn {
-    background-color: #007bff;
+    background-color: #19232d;
     border: none;
     padding: 10px;
     font-size: 1em;
@@ -47,7 +48,7 @@
   }
   
   .btn:hover {
-    background-color: #0056b3;
+    background-color: #e7b159;
   }
   
   .btn:focus {
@@ -55,7 +56,7 @@
   }
   
   .btn:active {
-    background-color: #003f7f;
+    background-color: #e7b159;
   }
   /* home.component.scss */
 .icon-container {
