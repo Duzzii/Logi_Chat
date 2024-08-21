@@ -8,6 +8,7 @@ import { GroupCreateComponent } from './components/group-create/group-create.com
 import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
+  { path: '', component: GroupCreateComponent,},
   { path: 'home', component: HomeComponent },
   { path: 'sign-in',component: SigninComponent },
   { path: 'register', component: RegisterComponent},

@@ -1,5 +1,5 @@
 export const environment = {
     production: true,
-    apiUrl: 'https://api.yourdomain.com'
+    apiUrl: 'https://chatigo-app-latest.onrender.com/'
   };
   
