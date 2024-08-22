@@ -19,7 +19,7 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
         registry.addEndpoint("/ws")
-                .setAllowedOriginPatterns("http://localhost:4200", "http://10.100.0.119:4200", "https://chatigo-app-latest.onrender.com")
+                .setAllowedOriginPatterns("http://10.100.0.119:4200")
                 .withSockJS();
     }
 }
