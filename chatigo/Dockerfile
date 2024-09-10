@@ -1,26 +1,25 @@
-# Use a Maven image to build the application
+# Stage 1: Build the application
 FROM maven:3.8.4-openjdk-17 AS builder
 
-# Set the working directory inside the container
 WORKDIR /app
 
-# Copy the project files into the container
-COPY . .
+# Copy the pom.xml and source code
+COPY pom.xml .
+COPY src ./src
 
-# Build the Spring Boot application
+# Build the application
 RUN mvn clean package -DskipTests
 
-# Use a lightweight JDK base image to run the application
+# Stage 2: Run the application
 FROM openjdk:17-jdk-slim
 
-# Set the working directory inside the container
 WORKDIR /app
 
-# Copy the JAR file from the builder stage
-COPY --from=builder /app/target/your-app-name.jar /app/your-app-name.jar
+# Copy the jar from the build stage
+COPY --from=builder /app/target/chatigo-0.0.1-SNAPSHOT.jar /app/chatigo.jar
 
-# Expose the port the Spring Boot app will run on
+# Expose port 8080
 EXPOSE 8080
 
-# Run the application
-CMD ["java", "-jar", "/app/your-app-name.jar"]
+# Run the jar file
+CMD ["java", "-jar", "/app/chatigo.jar"]
