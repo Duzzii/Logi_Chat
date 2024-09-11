@@ -14,7 +14,7 @@ public class GlobalCorsConfig {
     @Bean
     public CorsFilter corsFilter() {  // This remains as the global CORS filter
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(Arrays.asList( "http://10.100.0.119:4200"));
+        config.setAllowedOrigins(Arrays.asList( "https://chatigo11.web.app"));
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
         config.setAllowCredentials(true);

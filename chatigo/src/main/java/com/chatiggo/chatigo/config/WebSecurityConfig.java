@@ -58,7 +58,7 @@ public class WebSecurityConfig {
     @Bean
     public CorsFilter securityCorsFilter() {  // Renamed to avoid conflicts
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(Arrays.asList("https://duzzii.github.io"));
+        config.setAllowedOrigins(Arrays.asList("https://chatigo11.web.app"));
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
         config.setAllowCredentials(true);
