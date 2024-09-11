@@ -1,25 +1,14 @@
-# Stage 1: Build the application
-FROM maven:3.8.4-openjdk-17 AS builder
-
-WORKDIR /app
-
-# Copy the pom.xml and source code
-COPY pom.xml .
-COPY src ./src
-
-# Build the application
-RUN mvn clean package -DskipTests
-
-# Stage 2: Run the application
+# Use a base image for ARM64 architecture
 FROM openjdk:17-jdk-slim
 
+# Set the working directory in the container
 WORKDIR /app
 
-# Copy the jar from the build stage
-COPY --from=builder /app/target/chatigo-0.0.1-SNAPSHOT.jar /app/chatigo.jar
+# Copy the Maven build output (the jar file) to the container
+COPY target/chatigo-0.0.1-SNAPSHOT.jar /app/chatigo.jar
 
-# Expose port 8080
+# Expose the port that the Spring Boot app runs on
 EXPOSE 8080
 
-# Run the jar file
-CMD ["java", "-jar", "/app/chatigo.jar"]
+# Set the entry point to run the jar file
+ENTRYPOINT ["java", "-jar", "/app/chatigo.jar"]
